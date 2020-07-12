@@ -12,4 +12,19 @@ router.get('/', (request, response)=>{
     })
 })
 
+router.post('/create', (request, response)=>{
+    const student = new studentData({
+        username:request.body.username
+    })
+    student.save()
+            .then((data)=>{
+                response.json(data)
+            })
+            .catch((error)=>{
+                response.json(error)
+            })
+})
+
 module.exports = router
+
+
