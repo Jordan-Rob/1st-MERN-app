@@ -1,14 +1,28 @@
 const express = require('express')
 const router = express.Router()
-const assnData = require('../models/assignment')
+const assignmentData = require('../models/assignment')
 
-
-router.get('/', (request, response)=>{
-    assnData.find()
-    .then((data)=>{
-        response.json(data)
+router.get('/', (request, response) =>{
+    assignmentData.find()
+    .then(assignment =>{
+        response.json(assignment)
     })
-    .catch((error)=>{
+    .catch(error =>{
+        response.json(error)
+    })
+})
+
+router.post('/create', (request, response) =>{
+    const createdAssignment = new assignmentData({
+        username:request.body.username,
+        assignmentReport:request.body.assignmentReport,
+        timeSubmitted:request.body.timeSubmitted
+    })
+    createdAssignment.save()
+    .then(assignment =>{
+        response.json(assignment)
+    })
+    .catch(error =>{
         response.json(error)
     })
 })
@@ -50,22 +64,4 @@ router.post('/update/:id', (request, response) =>{
             response.json(error)
         })
 })
-
-
-router.post('/create', (request, response)=>{
-    const assignment = new assnData({
-        username:request.body.username,
-        assignmentReport:request.body.assignmentReport,
-        timeSubmited:request.body.time
-    })
-    assignment.save()
-            .then((data)=>{
-                response.json(data)
-            })
-            .catch((error)=>{
-                response.json(error)
-            })
-})
-
-
 module.exports = router
