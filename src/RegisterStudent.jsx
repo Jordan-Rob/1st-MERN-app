@@ -23,7 +23,7 @@ class RegisterStudent extends Component {
             username : this.state.username,
         }
         console.log(student)
-        axios.post('http://localhost:5000/student/create', student)
+        axios.post('http://localhost:5000/students/create', student)
             .then(response => console.log(response.data))
         this.setState({
             username:''
