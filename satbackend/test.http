@@ -1,5 +1,6 @@
-POST  http://localhost:5000/student/create http/1.1
+POST  http://localhost:5000/students/create http/1.1
 Content-Type: application/json
+
 {
     "username":"umar"
 }
