@@ -23,4 +23,4 @@ const assignmentSchema = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('assignmentDB', assignmentSchema)
+module.exports = mongoose.model('assignmentdbs', assignmentSchema)
